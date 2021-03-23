@@ -1,1 +1,0 @@
-# Highchart_vuln
