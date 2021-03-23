@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- CSS only -->
+    <!-- CSS only -->
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css' rel='stylesheet' />
+  </head>
+  <body>
+
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{% url 'index' %}">Highcharts</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+          </div>
+        </nav>
+
+      <div class="container">
+        <div id="container"></div>
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script>
+  Highcharts.chart('container', {
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: 'Severity by Cwe Code'
+      },
+      xAxis: {
+          categories: {{ categories|safe }}
+      },
+      series: [{
+          name: 'Low',
+          data: {{ low_series }},
+          color: 'green'
+      }, {
+          name: 'Medium',
+          data: {{ medium_series }},
+          color: 'yellow'
+      }, {
+          name: 'High',
+          data: {{ high_series }},
+          color: 'red'
+      }]
+  });
+</script>
+
+      </div>
+  </body>
+</html>
